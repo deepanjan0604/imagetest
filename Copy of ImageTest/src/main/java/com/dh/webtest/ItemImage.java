@@ -1,11 +1,13 @@
 package com.dh.webtest;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.*;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -19,18 +21,45 @@ public class ItemImage {
 	private Integer imageId;//id   
 	
 	
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name="image")
-    private byte [] image;
+	  @Column(name="url")
+	    @Lob
+	    private String url;
+	  
+	  @Column(name="extn")
+	    private String extn;
+
+	public Integer getImageId() {
+		return imageId;
+	}
+
+
+	public void setImageId(Integer imageId) {
+		this.imageId = imageId;
+	}
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public String getExtn() {
+		return extn;
+	}
+
+
+	public void setExtn(String extn) {
+		this.extn = extn;
+	}
+
+
+
+
+
 	
-
-	public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-
-
 }

@@ -14,17 +14,11 @@
 <link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
 <script src="image.js"></script>
 </head>
-<body ng-app="app" >
-<h2>Spring MVC file upload example</h2>
+<body ng-controller="displayctrl">
+<h2>Spring MVC file Display example</h2>
 
-<div ng-controller = "myCtrl">
-    <input type="file" file-model="myFile"/>
-    <button ng-click="uploadFile()">upload me</button>
+<div>
+<h2>{{itemimages.url}}</h2>
 </div>
-
-<a href="#imagedisplay">Display Image</a>
-<img ng-src="image">
-
-
 </body>
 </html>

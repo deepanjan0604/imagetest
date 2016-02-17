@@ -12,16 +12,19 @@
 
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Raleway:500' rel='stylesheet' type='text/css'>
-<script src="app.js"></script>
+<script src="image.js"></script>
 </head>
-<body ng-app="app" ng-controller="imagectrl">
+<body ng-app="app" >
 <h2>Spring MVC file upload example</h2>
 
-<form method="POST" action="saveImage()" enctype="multipart/form-data">
+<div ng-controller = "myCtrl">
+    <input type="file" file-model="myFile"/>
+    <button ng-click="uploadFile()">upload me</button>
+</div>
+
+<a href="#imagedisplay">Display Image</a>
+<img ng-src="image">
 
 
-    Please select a file to upload : <input type="file" name="file" /><br>
-    <input type="submit" value="upload" />
- 
 </body>
 </html>
