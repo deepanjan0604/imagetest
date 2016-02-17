@@ -1,28 +1,15 @@
 package com.dh.webtest;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -90,8 +77,14 @@ public class ItemController {
 		System.out.println(convertedFile);
 		
 		HashMap<String, Object> returnParams = new HashMap<String, Object>();
-		byte[] encodedBytes = Base64.encodeBase64("file".getBytes());
-		System.out.println("encodedBytes " + new String(encodedBytes));
+		byte[] b = file.getBytes();
+		String imageFile = StringUtils.newStringUtf8(Base64.encodeBase64(b));
+		
+		//String imageFile = base.toString();
+		System.out.println(imageFile);
+		/*
+		String encodedBytes = Base64.encodeBase64String("file".getBytes());*/
+	/*	//System.out.println("encodedBytes " + new String(encodedBytes));
 	        // Reading a Image file from file system
           FileInputStream imageInFile = new FileInputStream(convertedFile);
 		//BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
@@ -113,11 +106,14 @@ public class ItemController {
 			//System.out.println(image);
 			System.out.println(value);
 			 byte[] imageByteArray = decodeImage(imageDataString);
-			 System.out.println(imageByteArray);
+			 System.out.println(imageByteArray);*/
 			 ItemImage uploadFile = new ItemImage();
-			 uploadFile.setImageId(1);
-         uploadFile.setUrl(value);
-         //uploadFile.setImageId(2);
+			//uploadFile.setImageId(1);
+		
+		//String encodeBytes = (imageDataString);
+		//byte[] buff = encodedBytes.getBytes();
+        uploadFile.setUrl(imageFile);
+         uploadFile.setImageId(2);
          uploadFile.setExtn("jpg");
          itemImagerepository.save(uploadFile);
 			System.out.println("Image Successfully Manipulated!");
@@ -131,7 +127,7 @@ public class ItemController {
 	}
 	
 	public static String encodeImage(byte[] imageData) {
-        return Base64.encodeBase64URLSafeString(imageData);
+        return Base64.encodeBase64String(imageData);
     }
  
   
